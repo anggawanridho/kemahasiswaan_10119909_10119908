@@ -87,6 +87,11 @@ public class frm_utama extends javax.swing.JFrame {
         btn_simulasi_nilai.setFocusable(false);
         btn_simulasi_nilai.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_simulasi_nilai.setOpaque(true);
+        btn_simulasi_nilai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_simulasi_nilaiActionPerformed(evt);
+            }
+        });
 
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -224,6 +229,15 @@ public class frm_utama extends javax.swing.JFrame {
         // menghilangkan form utama
         this.setVisible(false);
     }//GEN-LAST:event_btn_data_nilaiActionPerformed
+
+    private void btn_simulasi_nilaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simulasi_nilaiActionPerformed
+        // TODO add your handling code here:
+        frm_simulasi_nilai_akhir nilai_akhir = new frm_simulasi_nilai_akhir();
+        nilai_akhir.setVisible(true);
+        
+        // menghilangkan form utama
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_simulasi_nilaiActionPerformed
 
     /**
      * @param args the command line arguments
