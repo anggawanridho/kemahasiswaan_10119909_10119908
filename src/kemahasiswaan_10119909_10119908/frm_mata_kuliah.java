@@ -28,7 +28,8 @@ public class frm_mata_kuliah extends javax.swing.JFrame {
      */
     public frm_mata_kuliah() {
         initComponents();
-        
+        btn_simpan.setEnabled(false);
+        btn_batal.setEnabled(false);
         dbsetting = new koneksi();
         driver = dbsetting.SettingPanel("DBDriver");
         database = dbsetting.SettingPanel("DBDatabase");
@@ -193,6 +194,12 @@ public class frm_mata_kuliah extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Nama M.K.");
+
+        jScrollPane2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPane2MouseClicked(evt);
+            }
+        });
 
         tabel_mahasiswa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -556,9 +563,6 @@ public class frm_mata_kuliah extends javax.swing.JFrame {
                 while(res.next()) {
                     data[0] = res.getString(1);
                     data[1] = res.getString(2);
-                    data[2] = res.getString(3);
-                    data[3] = res.getString(4);
-                    data[4] = res.getString(5);
                     tableModel.addRow(data);
                 }
                 res.close();
@@ -586,6 +590,13 @@ public class frm_mata_kuliah extends javax.swing.JFrame {
             tampil_field();
         }
     }//GEN-LAST:event_tabel_mahasiswaMouseClicked
+
+    private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==1){
+            tampil_field();
+        }
+    }//GEN-LAST:event_jScrollPane2MouseClicked
 
     /**
      * @param args the command line arguments
