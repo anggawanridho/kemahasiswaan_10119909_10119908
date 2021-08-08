@@ -9,7 +9,9 @@ import javax.swing.*;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -22,6 +24,8 @@ public class frm_nilai extends javax.swing.JFrame {
     String driver, database, user, pass;
     Object tabel;
     int row = 0;
+    List<Mahasiswa> listMahasiswa = new ArrayList();
+    List<MataKuliah> listMk = new ArrayList();
 
     /**
      * Creates new form frm_mahasiswa
@@ -38,6 +42,63 @@ public class frm_nilai extends javax.swing.JFrame {
         
         tabel_mahasiswa.setModel(tableModel);
         settableload();
+        loadMahasiswa();
+        loadMk();
+    }
+    
+        public void loadMk () {
+        try {
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(database, user, pass);
+            Statement stt = kon.createStatement();
+            String SQL = "SELECT * FROM t_mata_kuliah";
+            ResultSet res = stt.executeQuery(SQL);
+            cmb_mata.removeAllItems();
+            while (res.next()) {
+                MataKuliah mk = new MataKuliah();
+                mk.nama_mk = res.getString("nama_mk");
+                mk.kode_mk = res.getString("kode_mk");
+                listMk.add(mk);
+                cmb_mata.addItem(mk.nama_mk);
+            }
+            res.close();
+            stt.close();
+            kon.close();
+        } catch(Exception ex) {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
+            JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
+    }
+
+    public void loadMahasiswa () {
+        try {
+            Class.forName(driver);
+            Connection kon = DriverManager.getConnection(database, user, pass);
+            Statement stt = kon.createStatement();
+            String SQL = "SELECT * FROM t_mahasiswa";
+            ResultSet res = stt.executeQuery(SQL);
+            cmb_nama.removeAllItems();
+            while (res.next()) {
+                Mahasiswa mahasiswa = new Mahasiswa();
+                mahasiswa.nim = res.getString("nim");
+                mahasiswa.nama = res.getString("nama");
+                mahasiswa.alamat = res.getString("alamat");
+                mahasiswa.tanggal_lahir = res.getDate("tanggal_lahir");
+                mahasiswa.tempat_lahir = res.getString("tempat_lahir");
+                listMahasiswa.add(mahasiswa);
+                cmb_nama.addItem(mahasiswa.nama);
+            }
+            res.close();
+            stt.close();
+            kon.close();
+        } catch(Exception ex) {
+            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error",
+            JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
     }
     
     private javax.swing.table.DefaultTableModel tableModel = getDefaultTabelModel();
@@ -303,7 +364,11 @@ public class frm_nilai extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("Tugas 3");
 
-        cmb_mata.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmb_mata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_mataActionPerformed(evt);
+            }
+        });
 
         txt_kd_mk.setEditable(false);
 
@@ -366,7 +431,7 @@ public class frm_nilai extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(txt_uas, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(txt_tgl_angkatan, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(0, 9, Short.MAX_VALUE))
+                                                .addGap(0, 0, Short.MAX_VALUE))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel8)
@@ -562,8 +627,13 @@ public class frm_nilai extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_tampilActionPerformed
 
     private void cmb_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_namaActionPerformed
-        // TODO add your handling code here:
+        txt_nim.setText(listMahasiswa.get(cmb_nama.getSelectedIndex()).nim);        // TODO add your handling code here:
     }//GEN-LAST:event_cmb_namaActionPerformed
+
+    private void cmb_mataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_mataActionPerformed
+        // TODO add your handling code here:
+        txt_kd_mk.setText(listMk.get(cmb_mata.getSelectedIndex()).kode_mk);
+    }//GEN-LAST:event_cmb_mataActionPerformed
 
     /**
      * @param args the command line arguments
