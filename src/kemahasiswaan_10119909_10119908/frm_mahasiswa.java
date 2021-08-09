@@ -557,12 +557,12 @@ public class frm_mahasiswa extends javax.swing.JFrame {
                 tableModel.removeRow(row);
                 tableModel.insertRow(row, data);               
                 stt.close();
-                kon.close(); 
+                kon.close();
                 membersihkan_teks();
                 btn_simpan.setEnabled(false);
                 nonaktif_teks();
             }
-            catch (Exception e) {
+            catch (Exception e){
                 JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.INFORMATION_MESSAGE);
                 System.err.println(e.getMessage());
             }
