@@ -415,10 +415,14 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Kode Mata Kuliah");
 
-        cmb_nama_mk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--- Select ---" }));
         cmb_nama_mk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cmb_nama_mkMouseClicked(evt);
+            }
+        });
+        cmb_nama_mk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_nama_mkActionPerformed(evt);
             }
         });
 
@@ -939,7 +943,7 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
 
     private void cmb_nama_mkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmb_nama_mkMouseClicked
         // TODO add your handling code here:
-        txt_kode_mk.setText(listMk.get(cmb_nama_mk.getSelectedIndex()).kode_mk);
+        
     }//GEN-LAST:event_cmb_nama_mkMouseClicked
 
     private void tabel_mahasiswaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabel_mahasiswaMouseClicked
@@ -948,6 +952,11 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
             tampil_field();
         }
     }//GEN-LAST:event_tabel_mahasiswaMouseClicked
+
+    private void cmb_nama_mkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_nama_mkActionPerformed
+        // TODO add your handling code here:
+        txt_kode_mk.setText(listMk.get(cmb_nama_mk.getSelectedIndex()).kode_mk);
+    }//GEN-LAST:event_cmb_nama_mkActionPerformed
 
     /**
      * @param args the command line arguments
