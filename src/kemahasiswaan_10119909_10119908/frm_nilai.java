@@ -641,7 +641,7 @@ public class frm_nilai extends javax.swing.JFrame {
                     user,
                     pass);
                 Statement stt = kon.createStatement();
-                String SQL = "SELECT * FROM t_nilai WHERE nim="+
+                String SQL = "SELECT * FROM t_nilai WHERE nama_mk="+
                 txt_cari_nim.getText();
                 ResultSet res = stt.executeQuery(SQL);
                 while(res.next()) {
