@@ -646,7 +646,7 @@ public class frm_mahasiswa extends javax.swing.JFrame {
                              pass);
             Statement stt = kon.createStatement();
             String SQL = "SELECT * FROM t_mahasiswa WHERE nim="+
-                txt_cari_nim.getText();
+                                txt_cari_nim.getText();
             ResultSet res = stt.executeQuery(SQL);
             while(res.next()) {
                 data[0] = res.getString(1);

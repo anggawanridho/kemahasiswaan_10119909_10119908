@@ -57,7 +57,7 @@ public class frm_login extends javax.swing.JFrame {
         txt_login = new javax.swing.JButton();
         txt_daftar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -206,11 +206,9 @@ public class frm_login extends javax.swing.JFrame {
                 ResultSet res = stt.executeQuery(SQL);
                 if(res.next()){
                 if(txt_username.getText().equals(res.getString("username")) && txt_password.getText().equals(res.getString("password"))){
-                    JOptionPane.showMessageDialog(null, "BERHASIL");
-                    
                     frm_utama utama = new frm_utama();
                     utama.setVisible(true);
-                    dispose();
+                    this.setVisible(false);
                     
                 }
                 }else{

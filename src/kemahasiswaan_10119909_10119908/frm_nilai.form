@@ -397,11 +397,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Batal"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_batalMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="btn_keluar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Keluar"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_keluarMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmb_nama">
       <Properties>

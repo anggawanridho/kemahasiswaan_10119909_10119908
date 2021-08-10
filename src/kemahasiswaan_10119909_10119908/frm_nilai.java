@@ -168,6 +168,7 @@ public class frm_nilai extends javax.swing.JFrame {
                 data[12] = res.getString(13);
                 data[13] = res.getString(14);
                 data[14] = res.getString(15);
+                data[15] = res.getString(16);
                 tableModel.addRow(data);
             }
             res.close();
@@ -185,8 +186,6 @@ public class frm_nilai extends javax.swing.JFrame {
     }
     
     public void membersihkan_teks() {
-        txt_nim.setText("");
-        txt_kd_mk.setText("");
         txt_kehadiran.setText("");
         txt_tugas1.setText("");
         txt_tugas2.setText("");
@@ -385,8 +384,18 @@ public class frm_nilai extends javax.swing.JFrame {
         });
 
         btn_batal.setText("Batal");
+        btn_batal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_batalMouseClicked(evt);
+            }
+        });
 
         btn_keluar.setText("Keluar");
+        btn_keluar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_keluarMouseClicked(evt);
+            }
+        });
 
         cmb_nama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -684,42 +693,45 @@ public class frm_nilai extends javax.swing.JFrame {
 
     private void btn_ubahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ubahMouseClicked
         // TODO add your handling code here:
-        String data[] = new String[15];
-                String nama = (String) cmb_nama.getSelectedItem();
-                String nama_mk = (String) cmb_mata_kuliah.getSelectedItem();
-                SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
-                String angkatan = String.valueOf(f.format(txt_tgl_angkatan.getDate()));
-        
-                Double absen = Double.valueOf(txt_kehadiran.getText());
-                Double nilai_absen = ((absen/14)*100*5)/100;
-                Double tugas = Double.valueOf(txt_tugas1.getText());
-                Double tugas2 = Double.valueOf(txt_tugas2.getText());
-                Double tugas3 = Double.valueOf(txt_tugas3.getText());
-                Double nilai_tugas = (((tugas+tugas2+tugas3)/3)*(0.25));
-                Double uts = Double.valueOf(txt_uts.getText());
-                Double nilai_uts = uts*0.3;
-                Double uas = Double.valueOf(txt_uas.getText());
-                Double nilai_uas = uas*0.4;
-                
-                Double nilai_akhir = nilai_absen + nilai_tugas + nilai_uts + nilai_uas;
-                char indeks;
-                String keterangan;
-                if (nilai_akhir >= 80 && nilai_akhir <=100) {
-                    indeks = 'A';
-                    keterangan = "Lulus";
-                } else if(nilai_akhir >= 68) {
-                    indeks = 'B';
-                    keterangan = "Lulus";
-                } else if(nilai_akhir >= 56) {
-                    indeks = 'C';
-                    keterangan = "Lulus";
-                } else if(nilai_akhir >= 45) {
-                    indeks = 'D';
-                    keterangan = "Tidak Lulus";
-                } else {
-                    indeks = 'E';
-                    keterangan = "Tidak Lulus";
-                }
+        String nama = (String) cmb_nama.getSelectedItem();
+        String nama_mk = (String) cmb_mata_kuliah.getSelectedItem();
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+        String angkatan = String.valueOf(f.format(txt_tgl_angkatan.getDate()));
+
+        Double absen = Double.valueOf(txt_kehadiran.getText());
+        Double nilai_absen = ((absen/14)*100*5)/100;
+        Double tugas = Double.valueOf(txt_tugas1.getText());
+        Double tugas2 = Double.valueOf(txt_tugas2.getText());
+        Double tugas3 = Double.valueOf(txt_tugas3.getText());
+        Double nilai_tugas = (((tugas+tugas2+tugas3)/3)*(0.25));
+        Double uts = Double.valueOf(txt_uts.getText());
+        Double nilai_uts = uts*0.3;
+        Double uas = Double.valueOf(txt_uas.getText());
+        Double nilai_uas = uas*0.4;
+
+        Double nilai_akhir = nilai_absen + nilai_tugas + nilai_uts + nilai_uas;
+        char indeks;
+        String keterangan;
+        if (nilai_akhir >= 80 && nilai_akhir <=100) {
+            indeks = 'A';
+            keterangan = "Lulus";
+        } 
+        else if(nilai_akhir >= 68) {
+            indeks = 'B';
+            keterangan = "Lulus";
+        } 
+        else if(nilai_akhir >= 56) {
+            indeks = 'C';
+            keterangan = "Lulus";
+        } 
+        else if(nilai_akhir >= 45) {
+            indeks = 'D';
+            keterangan = "Tidak Lulus";
+        } 
+        else {
+            indeks = 'E';
+            keterangan = "Tidak Lulus";
+        }
         
         if ((txt_kehadiran.getText().isEmpty()) || (txt_kd_mk.getText().isEmpty()) || (txt_tugas1.getText().isEmpty())
             || (txt_tugas2.getText().isEmpty()) || (txt_tugas3.getText().isEmpty()) || (txt_nim.getText().isEmpty())) {
@@ -892,6 +904,27 @@ public class frm_nilai extends javax.swing.JFrame {
             tampil_field();
         }
     }//GEN-LAST:event_tabel_mahasiswaMouseClicked
+
+    private void btn_keluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_keluarMouseClicked
+        // TODO add your handling code here:
+        frm_utama utama = new frm_utama();
+        utama.setVisible(true);
+        
+        // menghilangkan form utama
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_keluarMouseClicked
+
+    private void btn_batalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_batalMouseClicked
+        // TODO add your handling code here:
+        membersihkan_teks();
+        btn_tambah.setEnabled(true);
+        btn_hapus.setEnabled(false);
+        btn_ubah.setEnabled(false);
+        btn_simpan.setEnabled(false);
+        btn_batal.setEnabled(false);
+        tabel_mahasiswa.setEnabled(true);
+        aktif_teks();
+    }//GEN-LAST:event_btn_batalMouseClicked
 
     /**
      * @param args the command line arguments

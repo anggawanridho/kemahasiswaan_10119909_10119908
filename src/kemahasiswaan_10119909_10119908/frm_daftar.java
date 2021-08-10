@@ -41,13 +41,14 @@ public class frm_daftar extends javax.swing.JFrame {
         (
             new Object[][] {},
             new String [] {"Nama",
-                            "Jenis kelamin",
-                            "Username",
-                            "Password",
-                            "Email",
-                            "Telpon",
-                            "Alamat"}
+                    "Jenis kelamin",
+                    "Username",
+                    "Password",
+                    "Email",
+                    "Telpon",
+                    "Alamat"}
          )
+                
          //disable perubahan pada grid
         {
         boolean[] canEdit = new boolean []
@@ -75,7 +76,7 @@ public class frm_daftar extends javax.swing.JFrame {
                                         user,
                                         pass);
             Statement stt=kon.createStatement();
-            String SQL ="SELECT * from t_pengguna";
+            String SQL ="SELECT * FROM t_pengguna";
             ResultSet res = stt.executeQuery(SQL);
             while(res.next())
             {
@@ -103,7 +104,6 @@ public class frm_daftar extends javax.swing.JFrame {
     }
 
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -305,7 +305,7 @@ public class frm_daftar extends javax.swing.JFrame {
 
     private void btn_simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanMouseClicked
         // TODO add your handling code here:
-        String data[]=new String[8];
+        String data[] = new String[8];
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
         String tanggallahir = String.valueOf(f.format(txt_tgl_lahir.getDate()));
 
@@ -326,15 +326,15 @@ public class frm_daftar extends javax.swing.JFrame {
                     pass);
                 Statement stt = kon.createStatement();
                 String SQL = "INSERT `t_pengguna` (`username`, `password`, `nama`, `tgl_lahir`, `jk`, `no_telp`, `email`, `alamat`)"
-                +"VALUES "
-                +"( '"+txt_username.getText()+"',"
-                +" '"+txt_password.getText()+"',"
-                +" '"+txt_nama.getText()+"',"
-                +" '"+tanggallahir+"',"        
-                +" '"+txt_jk.getSelectedItem().toString()+"',"
-                +" '"+txt_no_telp.getText()+"',"       
-                +" '"+txt_email.getText()+"',"        
-                +" '"+txt_alamat.getText()+" ')";
+                            +"VALUES "
+                            +"( '"+txt_username.getText()+"',"
+                            +" '"+txt_password.getText()+"',"
+                            +" '"+txt_nama.getText()+"',"
+                            +" '"+tanggallahir+"',"        
+                            +" '"+txt_jk.getSelectedItem().toString()+"',"
+                            +" '"+txt_no_telp.getText()+"',"       
+                            +" '"+txt_email.getText()+"',"        
+                            +" '"+txt_alamat.getText()+" ')";
 
                 stt.executeUpdate(SQL);
                 data[0] = txt_username.getText();
@@ -351,7 +351,7 @@ public class frm_daftar extends javax.swing.JFrame {
                 
                 frm_login login = new frm_login();
                 login.setVisible(true);
-                dispose();
+                this.setVisible(false);
 
             }
             catch (Exception ex)

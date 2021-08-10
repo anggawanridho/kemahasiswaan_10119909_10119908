@@ -127,7 +127,7 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
         }
     }
     
-    public void membersihkan_text() {
+    public void membersihkan_teks() {
         txt_persentase_absen.setText("");
         txt_persentase_tugas.setText("");
         txt_persentase_uts.setText("");
@@ -140,7 +140,7 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
         txt_uas.setText("");
     }
     
-    public void nonaktif_text(){
+    public void nonaktif_teks(){
         txt_persentase_absen.setEnabled(false);
         txt_persentase_tugas.setEnabled(false);
         txt_persentase_uts.setEnabled(false);
@@ -154,7 +154,7 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
         txt_uas.setEnabled(false);        
     }
     
-    public void aktif_text() {
+    public void aktif_teks() {
         txt_persentase_absen.setEnabled(true);
         txt_persentase_tugas.setEnabled(true);
         txt_persentase_uts.setEnabled(true);
@@ -280,7 +280,7 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("FORM MAHASISWA");
+        jLabel1.setText("FORM SIMULASI NILAI AKHIR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -289,14 +289,14 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(281, 281, 281))
+                .addGap(207, 207, 207))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -638,19 +638,20 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
 
     private void btn_tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMouseClicked
         // TODO add your handling code here:
-        membersihkan_text();
+        membersihkan_teks();
         txt_persentase_absen.requestFocus();
         btn_simpan.setEnabled(true);
         btn_ubah.setEnabled(false);
         btn_hapus.setEnabled(false);
         btn_batal.setEnabled(true);
         tabel_mahasiswa.setEnabled(false);
-        aktif_text();
+        aktif_teks();
     }//GEN-LAST:event_btn_tambahMouseClicked
 
     private void btn_ubahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ubahMouseClicked
         // TODO add your handling code here:
         String kode=txt_kode_mk.getText();
+        String keterangan = "", indeks = "";
         double presentase_absen,presentase_tugas,presentase_uts,presentase_uas,absensi,tugas1,tugas2,tugas3,uts,uas,nilai_absen,nilai_tugas,nilai_uts,nilai_uas,nilai_akhir;
         
         presentase_absen = Double.valueOf(txt_persentase_absen.getText())/100;
@@ -670,28 +671,28 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
         nilai_akhir = nilai_absen + nilai_uas + nilai_uts + nilai_tugas;
         
         if(nilai_akhir>=80 && nilai_akhir<=100){
-            String indeks = "A";
-            String keterangan = "Lulus";
+            indeks = "A";
+            keterangan = "Lulus";
         } 
         else if(nilai_akhir>=68 && nilai_akhir<=79){
-            String indeks = "B";
-            String keterangan = "Lulus";
+            indeks = "B";
+            keterangan = "Lulus";
         } 
         else if(nilai_akhir>=56 && nilai_akhir<=67){
-            String indeks = "C";
-            String keterangan = "Lulus";
+            indeks = "C";
+            keterangan = "Lulus";
         } 
         else if(nilai_akhir>=45 && nilai_akhir<=55){
-            String indeks = "D";
-            String keterangan = "Tidak Lulus";
+            indeks = "D";
+            keterangan = "Tidak Lulus";
         } 
         else if(nilai_akhir>=0 && nilai_akhir<=44){
-            String indeks = "E";
-            String keterangan = "Tidak Lulus";
+            indeks = "E";
+            keterangan = "Tidak Lulus";
         } 
         else if(absensi <= 11){
-            String indeks = "E";
-            String keterangan = "Tidak Lulus";
+            indeks = "E";
+            keterangan = "Tidak Lulus";
         }
         
         if ((kode.isEmpty())){
@@ -738,9 +739,8 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
                 tableModel.insertRow(0, data);
                 stt.close();
                 kon.close();
-                membersihkan_text();
+                membersihkan_teks();
                 btn_simpan.setEnabled(false);
-                nonaktif_text();
             }
             catch (Exception ex){
                 JOptionPane.showMessageDialog(null,
@@ -798,8 +798,8 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
             tableModel.removeRow(row);
             stt.close();
             kon.close();
-            membersihkan_text();
-            aktif_text();
+            membersihkan_teks();
+            aktif_teks();
         }
         catch (Exception ex)
         {
@@ -810,6 +810,7 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
     private void btn_simpanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_simpanMouseClicked
         // TODO add your handling code here:
         String kode=txt_kode_mk.getText();
+        String keterangan = "", indeks = "";
         double presentase_absen,presentase_tugas,presentase_uts,presentase_uas,absensi,tugas1,tugas2,tugas3,uts,uas,nilai_absensi,nilai_tugas,nilai_uts,nilai_uas,nilai_akhir;
         
         presentase_absen = Double.valueOf(txt_persentase_absen.getText())/100;
@@ -829,28 +830,28 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
         nilai_akhir = nilai_absensi + nilai_uas + nilai_uts + nilai_tugas;
         
         if(nilai_akhir>=80 && nilai_akhir<=100){
-            String indeks = "A";
-            String keterangan = "Lulus";
+            indeks = "A";
+            keterangan = "Lulus";
         } 
         else if(nilai_akhir>=68 && nilai_akhir<=79){
-            String indeks = "B";
-            String keterangan = "Lulus";
+            indeks = "B";
+            keterangan = "Lulus";
         } 
         else if(nilai_akhir>=56 && nilai_akhir<=67){
-            String indeks = "C";
-            String keterangan = "Lulus";
+            indeks = "C";
+            keterangan = "Lulus";
         } 
         else if(nilai_akhir>=45 && nilai_akhir<=55){
-            String indeks = "D";
-            String keterangan = "Tidak Lulus";
+            indeks = "D";
+            keterangan = "Tidak Lulus";
         } 
         else if(nilai_akhir>=0 && nilai_akhir<=44){
-            String indeks = "E";
-            String keterangan = "Tidak Lulus";
+            indeks = "E";
+            keterangan = "Tidak Lulus";
         } 
         else if(absensi <= 11){
-            String indeks = "E";
-            String keterangan = "Tidak Lulus";
+            indeks = "E";
+            keterangan = "Tidak Lulus";
         }
         
         if (kode.isEmpty()){
@@ -889,20 +890,21 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
                 data[4] = txt_persentase_uas.getText();
                 data[5] = txt_absensi.getText();
                 data[6] = txt_tugas1.getText();
-                data[7] = txt_tugas2.getText() ;
-                data[8] = txt_tugas3.getText() ;
-                data[9] = txt_uts.getText() ;
-                data[10] = txt_uas.getText() ;
-                data[11] = String.format("%.0f", nilai_absensi) ;
-                data[12] = String.format("%.0f", nilai_tugas) ;
-                data[13] = String.format("%.0f", nilai_uts) ;
-                data[14] = String.format("%.0f", nilai_uas) ;
-                data[15] = String.format("%.0f", nilai_akhir) ;
+                data[7] = txt_tugas2.getText();
+                data[8] = txt_tugas3.getText();
+                data[9] = txt_uts.getText();
+                data[10] = txt_uas.getText();
+                data[11] = String.format("%.0f", nilai_absensi);
+                data[12] = String.format("%.0f", nilai_tugas);
+                data[13] = String.format("%.0f", nilai_uts);
+                data[14] = String.format("%.0f", nilai_uas);
+                data[15] = String.format("%.0f", nilai_akhir);
+                data[16] = keterangan;
                 
                 tableModel.insertRow(0, data);
                 stt.close();
                 kon.close();
-                membersihkan_text();
+                membersihkan_teks();
                 btn_simpan.setEnabled(false);
             }
             catch (Exception ex){
@@ -915,20 +917,22 @@ public class frm_simulasi_nilai_akhir extends javax.swing.JFrame {
 
     private void btn_batalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_batalMouseClicked
         // TODO add your handling code here:
-        membersihkan_text();
+        membersihkan_teks();
         btn_tambah.setEnabled(true);
         btn_hapus.setEnabled(false);
         btn_ubah.setEnabled(false);
         btn_simpan.setEnabled(false);
         btn_batal.setEnabled(false);
         tabel_mahasiswa.setEnabled(true);
-        aktif_text();
+        aktif_teks();
     }//GEN-LAST:event_btn_batalMouseClicked
 
     private void btn_keluarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_keluarMouseClicked
         // TODO add your handling code here:
         frm_utama utama = new frm_utama();
         utama.setVisible(true);
+        
+        // menghilangkan form utama
         this.setVisible(false);
     }//GEN-LAST:event_btn_keluarMouseClicked
 
