@@ -45,7 +45,7 @@ public class frm_utama extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(240, 166, 100));
         setPreferredSize(new java.awt.Dimension(576, 400));
         setResizable(false);
 
@@ -147,6 +147,8 @@ public class frm_utama extends javax.swing.JFrame {
         lbl_aplikasi_kemahasiswaan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_aplikasi_kemahasiswaan.setText("Aplikasi Kemahasiswaan");
 
+        jPanel2.setBackground(new java.awt.Color(0, 173, 255));
+
         jLabel1.setText("10119909/M. Anggawan Ridho Islami");
 
         jLabel2.setText("10119908/Aldi Nugraha");
@@ -170,7 +172,7 @@ public class frm_utama extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addGap(159, 159, 159))
+                .addGap(165, 165, 165))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
