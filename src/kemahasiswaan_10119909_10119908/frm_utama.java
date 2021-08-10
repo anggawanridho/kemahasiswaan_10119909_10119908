@@ -220,6 +220,11 @@ public class frm_utama extends javax.swing.JFrame {
 
     private void btn_simulasi_kasusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_simulasi_kasusActionPerformed
         // TODO add your handling code here:
+        frm_simulasi_kasus kasus = new frm_simulasi_kasus();
+        kasus.setVisible(true);
+        
+        // menghilangkan form utama
+        this.setVisible(false);
     }//GEN-LAST:event_btn_simulasi_kasusActionPerformed
 
     private void btn_data_matkulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_data_matkulActionPerformed
